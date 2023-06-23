@@ -50,7 +50,8 @@ export const App: FunctionComponent = () => {
         new PlayerCircle(
           forgedEvent.x,
           forgedEvent.y,
-          `Player ${players.length}`
+          `Player ${players.length}`,
+          items
         )
       )
     }

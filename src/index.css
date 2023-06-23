@@ -3,5 +3,5 @@
 @tailwind utilities;
 
 html, body, #root {
-  height: 100vh;
+  @apply bg-black h-screen
 }

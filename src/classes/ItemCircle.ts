@@ -1,11 +1,14 @@
 import type P5 from 'p5'
 import { Item } from '../@types/Item'
+import { PlayerCircle } from './PlayerCircle'
 
 export class ItemCircle {
   centerX: number
   centerY: number
 
   item: Item
+
+  assigned: string | null = null
 
   size = 20
   padding = 32
@@ -25,5 +28,9 @@ export class ItemCircle {
     p5.fill(this.colorR, this.colorG, this.colorB)
     p5.noStroke()
     p5.ellipse(this.centerX, this.centerY, this.size)
+  }
+
+  assignedToPlayer(player: PlayerCircle) {
+    this.assigned = player.playerName
   }
 }
