@@ -4,19 +4,23 @@ import Sketch, { SketchProps } from 'react-p5'
 import { ItemCircle } from './classes/ItemCircle'
 import { PlayerCircle } from './classes/PlayerCircle'
 
+import { playAtom } from './atoms/playAtom'
+import { playersAtom } from './atoms/playersAtom'
+
+let canvasWidthRatio = 3 / 4
+
 export const Canvas: FunctionComponent = () => {
   let items: ItemCircle[] = []
-  let players: PlayerCircle[] = []
 
   const setup: SketchProps['setup'] = (p5, canvasParentRef) => {
     p5.createCanvas(
-      document.body.clientWidth,
+      document.body.clientWidth * canvasWidthRatio,
       document.body.clientHeight
     ).parent(canvasParentRef)
 
-    Array.from({ length: 10 }).map(() => {
+    Array.from({ length: 130 }).map(() => {
       items.push(
-        new ItemCircle(document.body.clientWidth, document.body.clientHeight, {
+        new ItemCircle(document.body.clientWidth * canvasWidthRatio, document.body.clientHeight, {
           name: 'demoitem',
         })
       )
@@ -30,8 +34,9 @@ export const Canvas: FunctionComponent = () => {
       item.render(p5)
     })
 
-    players.forEach(player => {
-      player.update()
+    playersAtom.get().forEach(player => {
+      if (playAtom.get())
+        player.update()
       player.render(p5)
     })
   }
@@ -46,14 +51,15 @@ export const Canvas: FunctionComponent = () => {
     let forgedEvent = event as unknown as ForgedClickEvent
 
     if (forgedEvent.type === 'click') {
-      players.push(
+      playersAtom.set([
+        ...playersAtom.get(),
         new PlayerCircle(
           forgedEvent.x,
           forgedEvent.y,
-          `Player ${players.length}`,
+          `Player ${playersAtom.get().length}`,
           items
         )
-      )
+      ])
     }
   }
 
