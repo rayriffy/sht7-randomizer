@@ -3,6 +3,8 @@ sht7-randomizer
 
 Prize randomizer for [The โง่ Hackathon ครั้งที่ 7 แห่งประเทศ Thailand](https://creatorsgarten.org/event/sht7)
 
+![game](https://github.com/rayriffy/sht7-randomizer/assets/22584594/3ba2fb4a-4420-4e28-a486-cd54c544e7c6)
+
 Tech stack
 ---
 
