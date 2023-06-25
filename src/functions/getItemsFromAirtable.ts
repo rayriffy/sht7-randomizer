@@ -5,6 +5,7 @@ interface AirTableAPIResponse {
       ID: number
       Name: string
       Quantity: number
+      Check: boolean
     }
     createdTime: string
   }[]

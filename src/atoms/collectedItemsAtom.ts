@@ -8,3 +8,5 @@ export const collectedItemsAtom = persistentAtom<string[]>(
     decode: JSON.parse,
   }
 )
+
+Object.assign(window, { collectedItemsAtom })

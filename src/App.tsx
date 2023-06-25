@@ -13,19 +13,21 @@ export const App: FunctionComponent = () => {
     getItemsFromAirtable().then(items => {
       const multipliedItems = items.records
         .map(record =>
-          Array.from({ length: record.fields.Quantity }).map(
-            (_, i) => {
-              const id = `prize${record.fields.ID}.${i}`
+          Array.from({ length: record.fields.Quantity }).map((_, i) => {
+            const id = `prize${record.fields.ID}.${i}`
 
-              if (collectedItemsAtom.get().includes(id))
-                return null
+            if (collectedItemsAtom.get().includes(id)) return null
 
-              return new ItemCircle(id, {
-                id: record.id,
-                name: record.fields.Name,
-              })
+            if (!record.fields.Check) {
+              console.log('Unchecked', record.fields)
+              return null
             }
-          )
+
+            return new ItemCircle(id, {
+              id: record.id,
+              name: record.fields.Name,
+            })
+          })
         )
         .flat()
         .filter((o): o is Exclude<typeof o, null> => o !== null)
