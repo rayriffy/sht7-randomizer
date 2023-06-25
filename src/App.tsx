@@ -32,7 +32,7 @@ export const App: FunctionComponent = () => {
         .flat()
         .filter((o): o is Exclude<typeof o, null> => o !== null)
 
-      itemsAtom.set(multipliedItems)
+      // itemsAtom.set(multipliedItems)
     })
   }, [])
 
