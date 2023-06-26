@@ -33,6 +33,8 @@ export const App: FunctionComponent = () => {
         .filter((o): o is Exclude<typeof o, null> => o !== null)
 
       // itemsAtom.set(multipliedItems)
+    }).catch(() => {
+      console.log('no sufficient permission to fetch data from airtable')
     })
   }, [])
 
